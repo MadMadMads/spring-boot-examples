@@ -41,6 +41,9 @@
         <module>spring-boot-web</module>
         <module>spring-boot-web-thymeleaf</module>
         <module>spring-boot-webflux</module>
+        <module>spring-boot-start</module>
+        <module>Spring-boot-bug</module>
+        <module>Spring-boot-dms</module>
     </modules>
 
     <build>

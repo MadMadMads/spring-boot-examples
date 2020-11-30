@@ -23,6 +23,7 @@ public class UserDetailServiceImpl implements  UserDetailService{
     public Page<UserDetail> findByCondition(UserDetailParam detailParam, Pageable pageable){
 
         return userDetailRepository.findAll((root, query, cb) -> {
+            //JpaSpecificationExecutor使用的Predicate
             List<Predicate> predicates = new ArrayList<Predicate>();
             //equal 示例
             if (!StringUtils.isNullOrEmpty(detailParam.getIntroduction())){

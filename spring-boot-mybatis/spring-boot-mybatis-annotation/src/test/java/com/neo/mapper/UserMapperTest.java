@@ -1,47 +1,61 @@
 package com.neo.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import com.neo.model.User;
-import org.junit.Assert;
+import com.neo.Contotller.name;
+import com.neo.model.Copy;
+import com.neo.model.SbProject;
+import com.neo.model.Temp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.neo.enums.UserSexEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserMapperTest {
 
-	@Autowired
-	private UserMapper userMapper;
+    @Autowired
+    private CopyMapper copyMapper;
 
-	@Test
-	public void testInsert() throws Exception {
-		userMapper.insert(new User("aa1", "a123456", UserSexEnum.MAN));
-		userMapper.insert(new User("bb1", "b123456", UserSexEnum.WOMAN));
-		userMapper.insert(new User("cc1", "b123456", UserSexEnum.WOMAN));
+    @Autowired
+    SbProjectMapper sbProjectMapper;
 
-		Assert.assertEquals(3, userMapper.getAll().size());
-	}
+    @Autowired
+    TempMapper tempMapper;
 
-	@Test
-	public void testQuery() throws Exception {
-		List<User> users = userMapper.getAll();
-		System.out.println(users.toString());
-	}
-	
-	
-	@Test
-	public void testUpdate() throws Exception {
-		User user = userMapper.getOne(30l);
-		System.out.println(user.toString());
-		user.setNickName("neo");
-		userMapper.update(user);
-		Assert.assertTrue(("neo".equals(userMapper.getOne(30l).getNickName())));
-	}
+    @Autowired
+    TestMapper testMapper;
 
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Test
+    public void test() {
+        List<Map<String, Object>> list =  jdbcTemplate.queryForList("select * from a");
+        System.out.println();
+    }
+
+    @Test
+    public void test1() {
+        SbProject sbProject = sbProjectMapper.selectMore("“1+X”证书制度下中职汽修专业“双融合四推进”人才培养模式建构与实践", "胡萍");
+        System.out.println();
+    }
+
+    @Test
+    public void jky() {
+        List<Copy> list = new ArrayList<>();
+        List<Temp> temp = tempMapper.selectMore();
+        List<SbProject> projects = new ArrayList<>();
+        for (Temp l1 : temp) {
+            SbProject project = sbProjectMapper.selectMore(l1.getName(), l1.getZuozhe());
+            projects.add(project);
+        }
+        System.out.println("");
+    }
 }

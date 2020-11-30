@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     int modifyById(String  userName, Long id);
 
     @Transactional
-    @Modifying
+    @Modifying //修改删除添加
     @Query("delete from User where id = ?1")
     void deleteById(Long id);
 

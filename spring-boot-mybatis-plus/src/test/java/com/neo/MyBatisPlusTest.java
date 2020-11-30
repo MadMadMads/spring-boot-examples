@@ -5,7 +5,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.domain.Copy;
+import com.domain.SbProject;
+import com.domain.Temp;
+import com.neo.mapper.CopyMapper;
+import com.neo.mapper.SbProjectMapper;
+import com.neo.mapper.TempMapper;
+import com.neo.mapper.OtherMapper;
 import com.neo.mapper.UserMapper;
+import com.neo.model.Other;
 import com.neo.model.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,11 +34,40 @@ public class MyBatisPlusTest {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private OtherMapper otherMapper;
+
+    @Autowired
+    private CopyMapper copyMapper;
+
+    @Autowired
+    SbProjectMapper sbProjectMapper;
+
+    @Autowired
+    TempMapper tempMapper;
+
+    @Test
+    public void jky() {
+        List<Copy> list = new ArrayList<>();
+        List<Temp> temp = tempMapper.selectMore();
+        List<SbProject> projects = new ArrayList<>();
+        for (Temp l1 : temp) {
+            SbProject project = sbProjectMapper.selectMore(l1.getName(),l1.getZuozhe());
+            projects.add(project);
+        }
+        System.out.println("");
+    }
 
     @Test
     public void testSelectOne() {
-        User user = userMapper.selectById(1L);
+        Other user = otherMapper.selectById(1L);
         System.out.println(user);
+    }
+
+    @Test
+    public void testRelatedSelect() {
+        Object res = userMapper.getRelatedSelect(1L);
+        System.out.println(res);
     }
 
     @Test

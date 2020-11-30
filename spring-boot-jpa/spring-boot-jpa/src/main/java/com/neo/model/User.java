@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "user")
 public class User  {
 
     @Id
@@ -23,8 +23,6 @@ public class User  {
     private String email;
     @Column(nullable = true, unique = true)
     private String nickName;
-    @Column(nullable = false)
-    private String regTime;
 
     public User() {
     }
@@ -34,7 +32,6 @@ public class User  {
         this.passWord = passWord;
         this.email = email;
         this.nickName = nickName;
-        this.regTime = regTime;
     }
 
     public Long getId() {
@@ -77,11 +74,4 @@ public class User  {
         this.nickName = nickName;
     }
 
-    public String getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(String regTime) {
-        this.regTime = regTime;
-    }
 }
