@@ -44,6 +44,7 @@
         <module>spring-boot-start</module>
         <module>Spring-boot-bug</module>
         <module>Spring-boot-dms</module>
+        <module>spring-boot-encryption</module>
     </modules>
 
     <build>
