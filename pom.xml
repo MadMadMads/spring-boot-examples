@@ -45,6 +45,11 @@
         <module>Spring-boot-bug</module>
         <module>Spring-boot-dms</module>
         <module>spring-boot-encryption</module>
+        <module>mfs-client-test</module>
+        <module>com.neo.akka</module>
+        <module>spring-boot-distribution</module>
+        <module>server</module>
+        <module>spring-boot-log</module>
     </modules>
 
     <build>

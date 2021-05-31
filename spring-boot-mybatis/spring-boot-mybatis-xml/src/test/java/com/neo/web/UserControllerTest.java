@@ -30,8 +30,31 @@ public class UserControllerTest {
 
     @Test
     public void getUsers() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/getUsers")
-                .accept(MediaType.APPLICATION_JSON_UTF8)).andDo(print());
+        String json = "{\n" +
+                "    \"filterDimension\":{\n" +
+                "        \"operator\":\"and\",\n" +
+                "        \"filters\":[\n" +
+                "            {\n" +
+                "                \"field\":\"author_user_id\",\n" +
+                "                \"operator\":\"=\",\n" +
+                "                \"value\":\"51881489079\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    },\n" +
+                "    \"business\":\"news_article_13\",\n" +
+                "    \"metricList\":[\n" +
+                "        \"acc_total_income\",\n" +
+                "        \"acc_basic_income\",\n" +
+                "        \"acc_subsidy\"\n" +
+                "    ],\n" +
+                "    \"date\":{\n" +
+                "        \"startTime\":\"2021-01-20\",\n" +
+                "        \"endTime\":\"2021-01-20\"\n" +
+                "    }\n" +
+                "}";
+        System.out.println();
+//        mockMvc.perform(MockMvcRequestBuilders.post("/getUsers")
+//                .accept(MediaType.APPLICATION_JSON_UTF8)).andDo(print());
     }
 
 }
